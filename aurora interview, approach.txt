@@ -1,0 +1,28 @@
+﻿Libraries installed 
+
+Pandas 
+Xlrd
+Openpyxl
+Numpy
+Pyswarm
+xlsxwriter
+
+
+Approach: 
+
+* Ignore market 3 as you’re not going to make much profit with this market compared to 1 and 2. 
+* Model battery as only charging/discharging at maximum rate. 
+* Model battery efficiency only by adjusting profit accordingly 
+* Only make sales if the battery has the capacity/energy. Allow a given trading strategy to “try” charge/discharge if it wants to. 
+* Always choose the market with the lowest price for buy, and highest price for sale. 
+* Only optimise for two parameters: buy and sell time during the day. Assume they are fixed for the entire time period. (You could make it a parameterised variable to be more optimal)
+* Buy/Sell for two hours until full/empty
+* Degradation deemed out of scope - won’t affect the outcome in an interesting way. 
+* Convergence doesn't need to be too precise since the landscape is "steppy". So a swarm like algorithm is going to do the best job, and won't 
+need many iterations. 
+
+Directions: 
+
+- Results are in TransactionsAndProfits.xlsx
+- Run optimisescript.py to run the optimisation
+- Run optimisescript w  to write new results to file. 
