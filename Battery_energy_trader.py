@@ -10,7 +10,7 @@ class Battery_energy_trader:
     def __init__(self, transaction_writer: TransactionWriter = None):
         self.battery = Battery(battery_file)
         self._profit = 0.0
-        self._annual_profit = 0.0
+        self._running_annual_profit = 0.0
         self.transaction_writer = transaction_writer
 
     @property
@@ -53,10 +53,11 @@ class Battery_energy_trader:
             and timestamp.hour == 23
             and timestamp.minute == 30
         ):
-            self._annual_profit = self.profit - self._annual_profit
+            annual_profit = self.profit - self._running_annual_profit
             self.transaction_writer.write_profit(
-                timestamp.year, self._annual_profit - self.battery.fixed_cost_per_year
+                timestamp.year, annual_profit - self.battery.fixed_cost_per_year
             )
+            self._running_annual_profit = self.profit
 
     def buy(self, price, time):
         if self.battery.charge(time):

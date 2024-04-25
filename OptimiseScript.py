@@ -12,7 +12,7 @@ import sys
 def main():
     market_data = pd.read_excel(market_data_file, sheet_name=sheet1, usecols=[0, 1, 2])
     optimal_trading_parameters, f_opt = pso(
-        lambda x: -profit_given_data(x, market_data=market_data[0:2000]),
+        lambda x: -profit_given_data(x, market_data=market_data[0:4000]),
         lb=[0, 0],
         ub=[24, 24],
         maxiter=5,
